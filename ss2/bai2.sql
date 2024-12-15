@@ -10,7 +10,7 @@ oID int primary key,
 cID int,
 oDate date,
 oTotalPrice decimal(10, 2),
-foreign key (cID) references custumers(cID)
+foreign key (cID) references customers(cID)
 );
 create table products(
 pID int primary key,
