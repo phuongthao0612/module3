@@ -1,5 +1,5 @@
-create database quanly_banhang;
-use quanly_banhang;
+create database sales_management;
+use sales_managements;
 create table customers(
 cID int primary key,
 cName varchar(255),
