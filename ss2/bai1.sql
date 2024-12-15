@@ -1,5 +1,11 @@
 create database quanly_donhang;
 use quanly_donhang;
+create table nhaCC(
+maNCC int primary key,
+tenNCC varchar (255),
+diachi varchar (255),
+sdt varchar (15)
+);
 create table phieuxuat(
 soPX int primary key,
 ngayxuat date
@@ -10,17 +16,13 @@ tenVTU varchar (255)
 );
 create table donDH(
 soDH int primary key,
-ngayDH date
+ngayDH date,
+maNCC int,
+foreign key (maNCC) references nhaCC (maNCC)
 );
 create table phieunhap(
 soPN int primary key,
 ngaynhap date
-);
-create table nhaCC(
-maNCC int primary key,
-tenNCC varchar (255),
-diachi varchar (255),
-sdt varchar (15)
 );
 create table chitiet_phieuxuat(
 soPX int,
