@@ -1,6 +1,6 @@
 create database quanly_banhang;
 use quanly_banhang;
-create table custumers(
+create table customers(
 cID int primary key,
 cName varchar(255),
 cAge int
