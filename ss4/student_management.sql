@@ -56,5 +56,10 @@ status bit default 1
  from subjects 
  join marks on subjects.id_subject = marks.id_subject
  where marks.mark = (select max(mark) from marks);
+ 
+ select students.name_student, avg(marks.mark) as average_mark
+ from students join marks on students.id_student = marks.id_student
+ group by students.id_student
+ order by average_mark desc;
 
  
