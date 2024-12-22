@@ -1,0 +1,174 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #333;
+    color: #fff;
+    padding: 10px 20px;
+}
+
+.nav {
+    display: flex;
+    gap: 20px;
+}
+
+.nav a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1rem;
+}
+
+.nav a:hover {
+    text-decoration: underline;
+}
+
+.content {
+    display: flex;
+    flex: 1;
+}
+
+.sidebar {
+    width: 15%;
+    padding: 10px;
+    background: #f2f2f2;
+    text-align: center;
+}
+
+.sidebar a {
+    display: block;
+    text-decoration: none;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.sidebar a:hover {
+    color: #007bff;
+}
+
+.main {
+    flex: 1;
+    padding: 20px;
+    background-color: #fff;
+}
+
+.main h1 {
+    margin-bottom: 10px;
+}
+
+.main h2 {
+    margin-top: 20px;
+}
+
+.main p {
+    margin-bottom: 20px;
+}
+
+.ads {
+    width: 20%;
+    background-color: #e9ecef;
+    padding: 20px;
+}
+
+.ad-box {
+    background-color: #ccc;
+    padding: 20px;
+    text-align: center;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    margin-top: 20px;
+}
+
+@media (max-width: 1024px) {
+    .content {
+        flex-direction: column;
+    }
+
+    .sidebar, .ads {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .sidebar a {
+        display: block;
+        margin: 10px 0;
+    }
+
+    .ads {
+        display: flex;
+        justify-content: space-around;
+    }
+
+    .main {
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+    }
+
+    .nav {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .sidebar {
+        text-align: left;
+        padding: 20px;
+    }
+
+    .ads .ad-box {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}
+@media (max-width: 480px) {
+    .nav {
+        padding: 10px;
+    }
+
+    .main {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .content {
+        padding: 10px;
+    }
+
+    .ads .ad-box {
+        width: 100%;
+        padding: 10px;
+    }
+
+    footer {
+        padding: 20px;
+    }
+}
+
+
