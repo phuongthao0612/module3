@@ -113,14 +113,25 @@ public class UserController extends HttpServlet {
         String updatedName = req.getParameter("updatedName");
         String updatedEmail = req.getParameter("updatedEmail");
         String updatedCountry = req.getParameter("updatedCountry");
-        if (id != null) {
-            User updatedUser = new User(Integer.parseInt(id), updatedName, updatedEmail, updatedCountry);
-            userService.update(updatedUser);
-            resp.sendRedirect("/user?message=updated");
+        if (id != null && !id.isEmpty()) {
+            User user = userService.getById(Integer.parseInt(id));
+            if (user != null) {
+                if (updatedName != null && !updatedName.isEmpty()) {
+                    user.setName(updatedName);
+                }
+                if (updatedEmail != null && !updatedEmail.isEmpty()) {
+                    user.setEmail(updatedEmail);
+                }
+                if (updatedCountry != null && !updatedCountry.isEmpty()) {
+                    user.setCountry(updatedCountry);
+                }
+                userService.update(user);
+                resp.sendRedirect("/user?message=updated");
+            } else {
+                resp.sendRedirect("/user?error=user_not_found");
+            }
         } else {
             resp.sendRedirect("/user");
         }
     }
-
-
 }
