@@ -11,9 +11,8 @@ public class UserService implements IService {
     private static UserRepository userRepository = new UserRepository();
 
     @Override
-    public List<User> getAll() {
-        List<User> users = userRepository.getAll();
-        return users;
+    public List<User> getAll(String country) {
+        return userRepository.getAll(country);
     }
 
     @Override
@@ -39,14 +38,10 @@ public class UserService implements IService {
         return userRepository.getById(id);
     }
 
-    @Override
-    public List<User> searchByCountry(String country) {
-        return userRepository.searchByCountry(country);
-    }
 
     @Override
     public List<User> getSortByName() {
-        List<User> users = getAll();
+        List<User> users = getAll(null);
         users.sort(Comparator.comparing(User::getName));
         return users;
     }

@@ -11,26 +11,31 @@ import java.util.List;
 public class UserRepository {
     private static List<User> users = new ArrayList<>();
 
-    public List<User> getAll() {
-        PreparedStatement statement = null;
+    public List<User> getAll(String country) {
         List<User> users = new ArrayList<>();
-        try {
-            statement = BaseRepository.getConnection()
-                    .prepareStatement("select * from users");
+        String sql = "SELECT * FROM users";
+        if (country != null && !country.isEmpty()) {
+            sql += " WHERE country LIKE ?";
+        }
+
+        try (PreparedStatement statement = BaseRepository.getConnection().prepareStatement(sql)) {
+            if (country != null && !country.isEmpty()) {
+                statement.setString(1, "%" + country + "%");
+            }
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 int id = resultSet.getInt("id");
                 String name = resultSet.getString("name_user");
                 String email = resultSet.getString("email");
-                String country = resultSet.getString("country");
-                users.add(new User(id, name, email, country));
-
+                String countryFromDB = resultSet.getString("country");
+                users.add(new User(id, name, email, countryFromDB));
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         return users;
     }
+
 
     public void add(User user) {
         try {
@@ -91,23 +96,4 @@ public class UserRepository {
         return user;
     }
 
-    public List<User> searchByCountry(String country) {
-        List<User> users = new ArrayList<>();
-        try {
-            PreparedStatement statement = BaseRepository.getConnection()
-                    .prepareStatement("select * from users where country like ?");
-            statement.setString(1, "%" + country + "%");
-            ResultSet resultSet = statement.executeQuery();
-            while (resultSet.next()) {
-                int id = resultSet.getInt("id");
-                String name = resultSet.getString("name_user");
-                String email = resultSet.getString("email");
-                String countryFromDB = resultSet.getString("country");
-                users.add(new User(id, name, email, countryFromDB));
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        return users;
-    }
 }

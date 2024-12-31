@@ -46,9 +46,12 @@ public class UserController extends HttpServlet {
         String countrySearch = req.getParameter("country");
         List<User> users;
         if (countrySearch != null && !countrySearch.isEmpty()) {
-            users = userService.searchByCountry(countrySearch);
+            users = userService.getAll(countrySearch);
         } else {
-            users = userService.getAll();
+            users = userService.getAll(null);
+        }
+        if (users.isEmpty()) {
+            req.setAttribute("message", "User not found.");
         }
         req.setAttribute("users", users);
         req.setAttribute("countrySearch", countrySearch);
@@ -65,20 +68,31 @@ public class UserController extends HttpServlet {
 
     private static void showEditForm(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String id = req.getParameter("id");
-        if (id != null) {
+        if (id != null && !id.isEmpty()) {
             User userToUpdate = userService.getById(Integer.parseInt(id));
-            req.setAttribute("user", userToUpdate);
-            req.getRequestDispatcher("WEB-INF/view/user/update.jsp").forward(req, resp);
+            if (userToUpdate != null) {
+                req.setAttribute("user", userToUpdate);
+                req.getRequestDispatcher("WEB-INF/view/user/update.jsp").forward(req, resp);
+            } else {
+                req.setAttribute("message", "User not found.");
+                resp.sendRedirect("/user?message=user_not_found");
+            }
         } else {
             resp.sendRedirect("/user");
         }
     }
 
+
     private static void deleteUser(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String idToDelete = req.getParameter("id");
-        if (idToDelete != null) {
-            userService.delete(Integer.parseInt(idToDelete));
-            resp.sendRedirect("/user?message=deleted");
+        if (idToDelete != null && !idToDelete.isEmpty()) {
+            User userToDelete = userService.getById(Integer.parseInt(idToDelete));
+            if (userToDelete != null) {
+                userService.delete(Integer.parseInt(idToDelete));
+                resp.sendRedirect("/user?message=deleted");
+            } else {
+                resp.sendRedirect("/user?error=user_not_found");
+            }
         } else {
             resp.sendRedirect("/user");
         }
