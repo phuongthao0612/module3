@@ -42,7 +42,7 @@
             </select>
         </div>
         <div class="form-group">
-            <label for="purchaseDate">Ngày mua:</label>
+            <label for="purchaseDate">Ngày đăng ký:</label>
             <input type="date" class="form-control" id="purchaseDate" name="purchaseDate" value="${purchase.purchaseDate}" required/>
         </div>
         <div class="form-group">

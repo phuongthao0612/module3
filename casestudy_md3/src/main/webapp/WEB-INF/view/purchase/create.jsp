@@ -17,8 +17,77 @@
     <title>Tạo Giao Dịch Mua Thẻ Gym</title>
     <style>
         .container{
-            margin-top: 150px;
+            margin-top: 135px;
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
         }
+
+        body {
+            background-color: #FFFACD;
+            font-family: Arial, sans-serif;
+            padding: 0;
+            margin: 0;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #007bff;
+        }
+
+        .form-group label {
+            font-size: 1.1rem;
+            color: #495057;
+        }
+
+        .form-control {
+            border-radius: 5px;
+            box-shadow: none;
+            border: 1px solid #ced4da;
+            font-size: 1rem;
+            padding: 10px;
+        }
+
+        .form-control:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+        }
+
+        .btn {
+            width: 100%;
+            padding: 12px;
+            font-size: 1.1rem;
+            border-radius: 5px;
+            background-color: #007bff;
+            border: none;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+        .mb-3 {
+            margin-bottom: 1.5rem;
+        }
+
+        select.form-control {
+            padding: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        option {
+            font-size: 1rem;
+        }
+
     </style>
 </head>
 <body>
@@ -47,7 +116,7 @@
             <input type="date" class="form-control" id="purchaseDate" name="purchaseDate" required>
         </div>
         <div class="form-group">
-            <label for="totalPrice">Giá:</label>
+            <label for="totalPrice">Tổng giá trị:</label>
             <input type="number" class="form-control" id="totalPrice" name="totalPrice" required>
         </div>
         <div class="form-group">
